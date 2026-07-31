@@ -6,7 +6,13 @@ class Main {
         Product cheese = new Product("cheese", 1.45f, 142);
         Product toiletPaper = new Product("toilet paper", 1.45f, 142);
 
+        SuperMarket superMarket = new SuperMarket(bread, fruit, cheese, toiletPaper);
+        Customer customer = new Customer("eric");
+        String productName = IO.readln("Which product do you want to buy?");
+        int amount = Integer.parseInt(IO.readln("How many do you want to buy? "));
 
+        customer.goToSupermarket(superMarket);
+        customer.buyItem(productName, amount);
     }
 }
 
