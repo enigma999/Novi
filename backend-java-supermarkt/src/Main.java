@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 class Main {
-    void main() {
+    void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         Product product1 = new Product("bread", 1.12f, 14);
         Product product2 = new Product("fruit", 1.45f, 123);
         Product product3 = new Product("cheese", 1.55f, 32);
@@ -37,8 +40,70 @@ class Main {
         supermarkets.put("halbert eijn", new SuperMarket("Halbert Eijn", productList1));
         supermarkets.put("dumbo", new SuperMarket("Dumbo", productList2));
         supermarkets.put("caldi", new SuperMarket("Caldi", productList3));
+        Customer customer = new Customer("bob");
+
+        while (true) {
+            System.out.println("\nWhat do you want to do?");
+            System.out.println("1 - Pick a supermarket");
+            System.out.println("2 - buy a product");
+            System.out.println("3 - restock a product");
+            System.out.println("4 - exit");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
 
+            switch (choice) {
+                case 1: {
+                    System.out.println("Which supermarket do you want to go to?");
+                    System.out.println("Pick one of the following:");
+                    System.out.println("- Halbert Eijn");
+                    System.out.println("- Dumbo");
+                    System.out.println("- Caldi");
+                    String superMarketChoice = scanner.nextLine().toLowerCase();
+                    SuperMarket superMarket = supermarkets.get(superMarketChoice);
+                    customer.goToSupermarket(superMarket);
+                    break;
+                }
+                case 2: {
+                    if (customer.superMarket == null) {
+                        System.out.println("Pick a supermarket first.");
+                        break;
+                    }
+                    System.out.println("Which product do you want to buy from " + customer.superMarket.name + "?");
+                    String productChoice = scanner.nextLine().toLowerCase();
+                    System.out.println("How many do you want to buy?");
+                    int amountChoice = scanner.nextInt();
+                    customer.buyItem(productChoice, amountChoice);
+                    break;
+                }
+                case 3: {
+                    System.out.println("Which supermarket do you want to restock?");
+                    System.out.println("Pick one of the following:");
+                    System.out.println("- Halbert Eijn");
+                    System.out.println("- Dumbo");
+                    System.out.println("- Caldi");
+                    String superMarketChoice = scanner.nextLine().toLowerCase();
+                    SuperMarket superMarket = supermarkets.get(superMarketChoice);
+                    if (superMarket == null){
+                        System.out.println("no supermarket found with that name");
+                        continue;
+                    }
+                    System.out.println("Which product do you want to restock in " + superMarket.name + "?");
+                    String productChoice = scanner.nextLine().toLowerCase();
+                    System.out.println("How many do you want to add?");
+                    int amountChoice = scanner.nextInt();
+                    superMarket.restockItem(productChoice, amountChoice);
+                    break;
+                }
+                case 4: {
+                    System.out.println("Goodbye");
+                    return;
+                }
+                default: {
+                    System.out.println("This is not a valid input");
+                }
+            }
+        }
     }
 }
 
@@ -92,8 +157,8 @@ class SuperMarket {
 }
 
 class Customer {
-    private String name;
-    private SuperMarket superMarket;
+    public String name;
+    public SuperMarket superMarket;
 
     public Customer(String name) {
         this.name = name;
