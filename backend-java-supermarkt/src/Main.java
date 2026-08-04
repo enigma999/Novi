@@ -1,10 +1,10 @@
 
 class Main {
     void main() {
-        Product bread = new Product("bread", 1.45f, 142);
-        Product fruit = new Product("fruit", 1.45f, 142);
-        Product cheese = new Product("cheese", 1.45f, 142);
-        Product toiletPaper = new Product("toilet paper", 1.45f, 142);
+        Product bread = new Product("bread", 1.12f, 14);
+        Product fruit = new Product("fruit", 1.45f, 123);
+        Product cheese = new Product("cheese", 1.55f, 32);
+        Product toiletPaper = new Product("toilet paper", 3.45f, 151);
 
         SuperMarket superMarket = new SuperMarket(bread, fruit, cheese, toiletPaper);
         Customer customer = new Customer("eric");
