@@ -1,12 +1,43 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 
 class Main {
     void main() {
-        Product bread = new Product("bread", 1.12f, 14);
-        Product fruit = new Product("fruit", 1.45f, 123);
-        Product cheese = new Product("cheese", 1.55f, 32);
-        Product toiletPaper = new Product("toilet paper", 3.45f, 151);
+        Product product1 = new Product("bread", 1.12f, 14);
+        Product product2 = new Product("fruit", 1.45f, 123);
+        Product product3 = new Product("cheese", 1.55f, 32);
+        Product product4 = new Product("toilet paper", 3.45f, 151);
+        ArrayList<Product> productList1 = new ArrayList<>();
+        productList1.add(product1);
+        productList1.add(product2);
+        productList1.add(product3);
+        productList1.add(product4);
 
-        SuperMarket superMarket = new SuperMarket(bread, fruit, cheese, toiletPaper);
+        Product product5 = new Product("bread", 1.12f, 142);
+        Product product6 = new Product("lettuce", 0.45f, 13;
+        Product product7 = new Product("cheese", 1.53f, 315);
+        Product product8 = new Product("toilet paper", 2.45f, 14);
+        ArrayList<Product> productList2 = new ArrayList<>();
+        productList2.add(product5);
+        productList2.add(product6);
+        productList2.add(product7);
+        productList2.add(product8);
+
+        Product product9 = new Product("bread", 1.13f, 43);
+        Product product10 = new Product("fruit", 1.24f, 57);
+        Product product11 = new Product("burger", 2.59f, 87);
+        Product product12 = new Product("toilet paper", 3.21f, 1241);
+        ArrayList<Product> productList3 = new ArrayList<>();
+        productList3.add(product9);
+        productList3.add(product10);
+        productList3.add(product11);
+        productList3.add(product12);
+
+        HashMap<String, Object> supermarkets = new HashMap<>();
+        supermarkets.put("Halbert Eijn",new SuperMarket("Halbert Eijn", productList1));
+        supermarkets.put("Dumbo",new SuperMarket("Dumbo", productList2));
+        supermarkets.put("Caldi",new SuperMarket("Caldi", productList3));
+
         Customer customer = new Customer("eric");
         String productName = IO.readln("Which product do you want to buy?");
         int amount = Integer.parseInt(IO.readln("How many do you want to buy? "));
@@ -29,32 +60,18 @@ class Product {
 }
 
 class SuperMarket {
-    private Product bread;
-    private Product fruit;
-    private Product cheese;
-    private Product toiletPaper;
+    public String name;
+    public ArrayList<Product> products;
 
-    public SuperMarket(Product bread, Product fruit, Product cheese, Product toiletPaper) {
-        this.bread = bread;
-        this.fruit = fruit;
-        this.cheese = cheese;
-        this.toiletPaper = toiletPaper;
-    }
 
-    public void buyBread(int amount) {
-        buyItem(this.bread, amount);
-    }
+    public SuperMarket(String name, ArrayList<Product> productList) {
+        this.name = name;
+        if (productList == null) {
+            this.products = new ArrayList<Product>();
+        } else {
+            this.products = productList;
+        }
 
-    public void buyFruit(int amount) {
-        buyItem(this.fruit, amount);
-    }
-
-    public void buyCheese(int amount) {
-        buyItem(this.cheese, amount);
-    }
-
-    public void buyToiletPaper(int amount) {
-        buyItem(this.toiletPaper, amount);
     }
 
     public void buyItem(Product product, int amount) {
@@ -64,6 +81,17 @@ class SuperMarket {
             System.out.println("You bought " + amount + " " + product.name + "  for " + totalPrice + " euro");
         } else {
             System.out.println("You cannot buy " + amount + " " + product.name + ", we only have " + product.amount + " " + product.name + " in stock.");
+        }
+    }
+
+    public void restockItem(String productName, int amount){
+        for(int i = 0; i < this.products.size(); i++){
+            Product superMarketProduct = this.products.get(i);
+            if(superMarketProduct.name.equalsIgnoreCase(productName)){
+                superMarketProduct.amount = superMarketProduct.amount + amount;
+                return;
+            }
+            System.out.println(this.name + " does not sell " + productName);
         }
     }
 }
@@ -83,16 +111,15 @@ class Customer {
     public void buyItem(String productName, int amount) {
         if (this.superMarket == null) {
             System.out.println("Select a supermarket to go to first");
-        } else if (productName.equals("bread")) {
-            superMarket.buyBread(amount);
-        } else if (productName.equals("fruit")) {
-            superMarket.buyFruit(amount);
-        } else if (productName.equals("cheese")) {
-            superMarket.buyCheese(amount);
-        } else if (productName.equals("toilet paper")) {
-            superMarket.buyToiletPaper(amount);
         } else {
-            System.out.println("Product not found");
+            for(int i = 0; i < superMarket.products.size(); i++){
+               Product superMarketProduct = superMarket.products.get(i);
+               if(superMarketProduct.name.equalsIgnoreCase(productName)){
+                   this.superMarket.buyItem(superMarketProduct, amount);
+                   return;
+               }
+            }
+            System.out.println(superMarket.name + " does not sell " + productName);
         }
     }
 }
