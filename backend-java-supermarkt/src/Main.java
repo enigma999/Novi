@@ -34,10 +34,9 @@ class Main {
         productList3.add(product12);
 
         HashMap<String, SuperMarket> supermarkets = new HashMap<>();
-        supermarkets.put("halbert eijn",new SuperMarket("Halbert Eijn", productList1));
-        supermarkets.put("dumbo",new SuperMarket("Dumbo", productList2));
-        supermarkets.put("caldi",new SuperMarket("Caldi", productList3));
-
+        supermarkets.put("halbert eijn", new SuperMarket("Halbert Eijn", productList1));
+        supermarkets.put("dumbo", new SuperMarket("Dumbo", productList2));
+        supermarkets.put("caldi", new SuperMarket("Caldi", productList3));
 
 
     }
@@ -80,10 +79,10 @@ class SuperMarket {
         }
     }
 
-    public void restockItem(String productName, int amount){
-        for(int i = 0; i < this.products.size(); i++){
+    public void restockItem(String productName, int amount) {
+        for (int i = 0; i < this.products.size(); i++) {
             Product superMarketProduct = this.products.get(i);
-            if(superMarketProduct.name.equalsIgnoreCase(productName)){
+            if (superMarketProduct.name.equalsIgnoreCase(productName)) {
                 superMarketProduct.amount = superMarketProduct.amount + amount;
                 return;
             }
@@ -108,12 +107,12 @@ class Customer {
         if (this.superMarket == null) {
             System.out.println("Select a supermarket to go to first");
         } else {
-            for(int i = 0; i < superMarket.products.size(); i++){
-               Product superMarketProduct = superMarket.products.get(i);
-               if(superMarketProduct.name.equalsIgnoreCase(productName)){
-                   this.superMarket.buyItem(superMarketProduct, amount);
-                   return;
-               }
+            for (int i = 0; i < superMarket.products.size(); i++) {
+                Product superMarketProduct = superMarket.products.get(i);
+                if (superMarketProduct.name.equalsIgnoreCase(productName)) {
+                    this.superMarket.buyItem(superMarketProduct, amount);
+                    return;
+                }
             }
             System.out.println(superMarket.name + " does not sell " + productName);
         }
