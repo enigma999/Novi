@@ -14,7 +14,7 @@ class Main {
         productList1.add(product4);
 
         Product product5 = new Product("bread", 1.12f, 142);
-        Product product6 = new Product("lettuce", 0.45f, 13;
+        Product product6 = new Product("lettuce", 0.45f, 13);
         Product product7 = new Product("cheese", 1.53f, 315);
         Product product8 = new Product("toilet paper", 2.45f, 14);
         ArrayList<Product> productList2 = new ArrayList<>();
