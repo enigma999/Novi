@@ -33,17 +33,13 @@ class Main {
         productList3.add(product11);
         productList3.add(product12);
 
-        HashMap<String, Object> supermarkets = new HashMap<>();
-        supermarkets.put("Halbert Eijn",new SuperMarket("Halbert Eijn", productList1));
-        supermarkets.put("Dumbo",new SuperMarket("Dumbo", productList2));
-        supermarkets.put("Caldi",new SuperMarket("Caldi", productList3));
+        HashMap<String, SuperMarket> supermarkets = new HashMap<>();
+        supermarkets.put("halbert eijn",new SuperMarket("Halbert Eijn", productList1));
+        supermarkets.put("dumbo",new SuperMarket("Dumbo", productList2));
+        supermarkets.put("caldi",new SuperMarket("Caldi", productList3));
 
-        Customer customer = new Customer("eric");
-        String productName = IO.readln("Which product do you want to buy?");
-        int amount = Integer.parseInt(IO.readln("How many do you want to buy? "));
 
-        customer.goToSupermarket(superMarket);
-        customer.buyItem(productName, amount);
+
     }
 }
 
@@ -91,8 +87,8 @@ class SuperMarket {
                 superMarketProduct.amount = superMarketProduct.amount + amount;
                 return;
             }
-            System.out.println(this.name + " does not sell " + productName);
         }
+        System.out.println(this.name + " does not sell " + productName);
     }
 }
 
