@@ -5,7 +5,7 @@ public class Pokemon {
 
     public Pokemon(int hp){
         this.hp = hp;
-
+        this.level = 1;
     }
 
     public int getHp() {
@@ -16,6 +16,10 @@ public class Pokemon {
         this.hp = hp;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public String getName() {
         return name;
     }
@@ -24,11 +28,15 @@ public class Pokemon {
         this.name = name;
     }
 
-    public void speak(){
-        System.out.println(this.name + " says: peep");
+    public void speaks(){
+        System.out.println(getName() + " says: peep");
     }
 
     public void eats(String foodName){
         System.out.println(this.name + " eats " + foodName);
+    }
+
+    public void getsHurt(int hp){
+        setHp(getHp() - hp);
     }
 }
