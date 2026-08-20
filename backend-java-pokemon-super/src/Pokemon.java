@@ -39,4 +39,12 @@ public class Pokemon {
     public void getsHurt(int hp){
         setHp(getHp() - hp);
     }
+
+    public void scratch(Pokemon targetPokemon){
+        System.out.println(getName() + " attacks " + targetPokemon.getName() + " with scratch");
+        int damage = 1;
+        System.out.println("It does " + damage + " damage");
+
+        targetPokemon.getsHurt(damage);
+    }
 }
