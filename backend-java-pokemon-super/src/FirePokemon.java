@@ -5,6 +5,7 @@ public class FirePokemon extends Pokemon {
     public FirePokemon(int hp) {
         super(hp);
         this.flameHeat = getLevel();
+        this.flameColor = "red";
     }
 
     public String getFlameColor() {
