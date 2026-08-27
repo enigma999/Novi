@@ -2,7 +2,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ElectricPokemon extends Pokemon {
-    List<String> attacks = Arrays.asList("thunderpunch", "electroball", "thunder", "volttackle");
+    private final List<String> attacks = Arrays.asList("thunderpunch", "electroball", "thunder", "volttackle");
+    private final int strongestAttackDamage = 20;
 
     public ElectricPokemon(String name, int level, int hp, String food, String sound) {
         super(name, level, hp, food, sound, "electric");
@@ -10,7 +11,7 @@ public class ElectricPokemon extends Pokemon {
 
     private int calculateDamage(Pokemon enemy) {
         return switch (enemy.getType()) {
-            case "water" -> 20;
+            case "water" -> strongestAttackDamage;
             case "grass" -> 15;
             case "fire" -> 10;
             default -> 5;

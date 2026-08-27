@@ -2,7 +2,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GrassPokemon extends Pokemon {
-    List<String> attacks = Arrays.asList("leafstorm", "solarbeam", "leechseed", "leaveblade");
+    private final List<String> attacks = Arrays.asList("leafstorm", "solarbeam", "leechseed", "leaveblade");
+    private final int strongestAttackDamage = 20;
 
     public GrassPokemon(String name, int level, int hp, String food, String sound) {
         super(name, level, hp, food, sound, "grass");
@@ -10,7 +11,7 @@ public class GrassPokemon extends Pokemon {
 
     private int calculateDamage(Pokemon enemy) {
         return switch (enemy.getType()) {
-            case "electric" -> 20;
+            case "electric" -> strongestAttackDamage;
             case "fire" -> 15;
             case "water" -> 10;
             default -> 5;
